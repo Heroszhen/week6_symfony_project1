@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+{% endblock %}
+{%  block javascripts  %}
+    {{ parent() }}
+    <script src="{{ asset('js/ckeditorbasic/adapters/jquery.js') }}"></script>
+    <script src="{{ asset('js/ckeditorbasic/ckeditor.js') }}"></script>
+    <script>
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+        });
+    </script>
+{% endblock %}

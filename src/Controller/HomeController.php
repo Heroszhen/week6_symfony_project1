@@ -11,6 +11,7 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Entity\Article;
 use App\Entity\Slider;
+use App\Entity\Company;
 
 class HomeController extends AbstractController
 {
@@ -108,8 +109,10 @@ class HomeController extends AbstractController
         $contact = new Contact();
         $form = $this->createForm(ContactType::class,$contact);
 
+        $company = $em->getRepository(Company::class)->findAll();
         return $this->render('home/contact.html.twig', [
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "company" => $company[0]
         ]);
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 11, 2020 at 03:07 PM
+-- Generation Time: Aug 11, 2020 at 03:15 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -62,6 +62,25 @@ INSERT INTO `category` (`id`, `name`, `photo`) VALUES
 (1, 'scooter', '5e94741b9e442.jpeg'),
 (2, 'vélo', '5e94741ba0a5c.jpeg'),
 (3, 'caisson', '5e94741ba151f.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+CREATE TABLE `company` (
+  `id` int(11) NOT NULL,
+  `text1` longtext COLLATE utf8mb4_unicode_ci,
+  `map` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`id`, `text1`, `map`) VALUES
+(1, '<div>\r\n                        <strong>Vertek</strong>\r\n                        <div  class=\"text-black-50\">\r\n                            Paris , France , Terre \r\n                        </div>\r\n                        <div class=\"text-black-50\">\r\n                            Tel: +33 (0)1 11 11 11 11\r\n                        </div>\r\n                        <div class=\"text-black-50\">\r\n                            Email: gmail@gmail.com\r\n                        </div>\r\n                    </div>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167998.10803373056!2d2.206977064368058!3d48.858774103123785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1597133348642!5m2!1sfr!2sfr\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -140,6 +159,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
@@ -173,6 +198,12 @@ ALTER TABLE `article`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `company`
+--
+ALTER TABLE `company`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `contact`
