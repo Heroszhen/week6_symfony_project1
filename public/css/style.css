@@ -72,6 +72,9 @@ p{
 
 
 /*admin*/
+.admin{
+    padding-bottom:10px !important;
+}
 .admin .theadminnav{
     position: absolute;
     z-index: 20;

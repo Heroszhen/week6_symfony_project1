@@ -62,7 +62,7 @@
                             <img src="{{ asset('photos/' ~ one.photo) }}" class="card-img-top" alt="...">
                         </td>
                         <td>
-                            <a href="" class="btn btn-info mb-1">Modifier</a>
+                            <a href="{{ path('adminmodifyproduct',{'id':one.id}) }}" class="btn btn-info mb-1">Modifier</a>
                             <br>
                             <a href="{{ path('admindeleteoneproduct',{'id':one.id}) }}" class="btn btn-danger">Supprimer</a>
                         </td>
@@ -79,8 +79,9 @@
 
 {%  block javascripts  %}
     {{ parent() }}
-    <script src="{{ asset('js/ckeditorbasic/adapters/jquery.js') }}"></script>
     <script src="{{ asset('js/ckeditorbasic/ckeditor.js') }}"></script>
+    <script src="{{ asset('js/ckeditorbasic/adapters/jquery.js') }}"></script>
+    
     <script>
         $(function() {
             $('textarea.ckeditor').ckeditor();

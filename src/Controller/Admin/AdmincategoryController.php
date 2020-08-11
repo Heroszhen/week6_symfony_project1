@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Form\Product2Type;
 
 /**
  * Class AdmincategoryController
@@ -162,8 +163,32 @@ class AdmincategoryController extends AbstractController
         $session = $request->getSession();
         $session->set("adminnav","product");
 
+        $photo = $product->getPhoto();
+
+        $form = $this->createForm(Product2Type::class,$product);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
+                $file = $product->getPhoto();
+                if (!is_null($file)) {
+                    $newimg = uniqid() . '.' . $file->guessExtension();
+                    $file->move($this->getParameter('upload_dir') , $newimg);
+                    $product->setPhoto($newimg);
+                    if ($photo != null) unlink($this->getParameter('upload_dir') . $photo);
+                }else{
+                    $product->setPhoto($photo);
+                }
+                $em->persist($product);
+                $em->flush();
+
+                $message = "Vos modifications ont été enregistrées avec succès";
+                $this->addFlash('success', $message);
+            }
+        }
+
         return $this->render('admin/admincategory/modifyoneproduct.html.twig', [
-            
+            "form" => $form->createView(),
+            "product" => $product
         ]);
     }
 }

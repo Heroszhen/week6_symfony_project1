@@ -1,8 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-
+<div id="adminallproducts" class="admin">
+    <div class="theadminnav">
+        {% include 'admin/adminnav.html.twig' %}
+    </div>
+    <div class="theadmincontent">
+        <div class="container-fluid pt-5">
+            <h2 class="text-center mb-4">Modifier le produit : {{ product.name }}</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-md-7">
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.price) }}
+                        {{ form_row(form.category) }}
+                        {{ form_row(form.descritpion) }}
+                        {{ form_row(form.photo) }}
+                        <div class="showimagefile mb-1">
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h5>Votre image</h5>
+                            <img src="{{ asset('photos/' ~ product.photo) }}" class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {%  block javascripts  %}
     {{ parent() }}
