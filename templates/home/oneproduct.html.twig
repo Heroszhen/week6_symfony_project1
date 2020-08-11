@@ -18,13 +18,30 @@
                     <div class="h5">
                         {{ product.descritpion|raw }}
                     </div>
+                    <div>
+                        <button type="button" class="btn btn-warning mt-3 btnproduct" data-product="{{ product.id }}">Ajouter au panier</button>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    payment
+                    <h3>Panier</h3>
+                    <div>
+                        Produits : {{ app.session.get('basket')|length }}
+                    </div>
+                    <div>
+                        Quantité : 
+                        {% set n2 = 0 %}
+                        {% for one in app.session.get('basket') %}
+                            {% set n2 = n2 + one %}
+                        {% endfor %}
+                        {{ n2 }}
+                    </div>
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-success">Passer commande</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="row" style="margin-top:100px;">
+            <div class="row border-top" style="margin-top:100px;">
                 <div class="col-12 mb-2 h4">
                     Les autres produits
                 </div>

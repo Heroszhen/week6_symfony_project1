@@ -12,6 +12,7 @@ use App\Form\ContactType;
 use App\Entity\Article;
 use App\Entity\Slider;
 use App\Entity\Company;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
@@ -80,6 +81,27 @@ class HomeController extends AbstractController
             "product" => $pd,
             "others" => $others
         ]);
+    }
+
+    /**
+     * @Route("/addproductinbasket/{id}")
+     */
+    public function addOnProductInBasket($id,Request $request){
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $session = $request->getSession();
+            $basket = $session->get("basket");
+            if($basket == null){
+                $basket = [
+                    $id=>1
+                ];
+            }else{
+                if(!isset($basket[$id]))$basket[$id] = 1;
+                else $basket[$id] += 1;
+            }
+            $session->set("basket",$basket);
+            return new Response('1');
+        }
     }
 
     /**

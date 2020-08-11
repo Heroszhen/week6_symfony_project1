@@ -1,8 +1,13 @@
-
-$("#adminnav .btnsvg svg").click(function(){
-    if($('.admin .theadminnav').css('width') == "30px")$('.admin .theadminnav').css('width','200px');
-    else $('.admin .theadminnav').css('width','30px')
+$("#oneproduct button.btnproduct").click(function(){
+    let productid = $(this).attr("data-product");
+    $.get(
+        "/addproductinbasket/"+productid,
+        function (response) {
+            document.location.reload(true);
+        }
+    );
 });
+
 
 $("input.image").change(function(){
     function readURL(input) {
@@ -19,4 +24,10 @@ $("input.image").change(function(){
         }
     }
     readURL(this);
+});
+
+
+$("#adminnav .btnsvg svg").click(function(){
+    if($('.admin .theadminnav').css('width') == "30px")$('.admin .theadminnav').css('width','200px');
+    else $('.admin .theadminnav').css('width','30px')
 });
