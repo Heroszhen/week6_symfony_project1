@@ -111,11 +111,59 @@ class AdmincategoryController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $session = $request->getSession();
-        $session->set("adminnav","category");
+        $session->set("adminnav","product");
+
+        $product = new Product();
+        $form = $this->createForm(ProductType::class,$product);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
+                $file = $product->getPhoto();
+                if (!is_null($file)) {
+                    $newimg = uniqid() . '.' . $file->guessExtension();
+                    $file->move($this->getParameter('upload_dir'), $newimg);
+                    $product->setphoto($newimg);
+                }
+                $em->persist($product);
+                $em->flush();
+
+                $message = "Un produit a été ajouté avec succès";
+                $this->addFlash('success', $message);
+            }
+        }
 
         $allproducts = $em->getRepository(Product::class)->findBy([],["id"=>"desc"]);
         return $this->render('admin/admincategory/allproducts.html.twig', [
-            "allproducts" => $allproducts
+            "allproducts" => $allproducts,
+            "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/product/deleteoneproduct/{id}", name="admindeleteoneproduct")
+     */
+    public function deleteOneProduct(Product $product , Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if($product->getPhoto() != null){
+            if (file_exists($this->getParameter('upload_dir'). $product->getPhoto()))unlink($this->getParameter('upload_dir'). $product->getPhoto());
+        }
+        $em->remove($product);
+        $em->flush();
+        return $this->redirectToRoute('adminallproducts');
+    }
+
+     /**
+     * @Route("/produit/modifier_un_produit/{id}", name="adminmodifyproduct")
+     */
+    public function modifyOneProduct(Product $product, Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $session = $request->getSession();
+        $session->set("adminnav","product");
+
+        return $this->render('admin/admincategory/modifyoneproduct.html.twig', [
+            
         ]);
     }
 }

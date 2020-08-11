@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 11, 2020 at 12:48 PM
+-- Generation Time: Aug 11, 2020 at 03:07 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -104,6 +104,25 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `price`, `descritpion`, `pho
 (5, 3, 'VTK01', '50', '<div>\r\nDimension interne: 560x530x470\r\n</div>\r\n<div>\r\nPoids: 8kg\r\n</div>', '5e9af28e163ce.jpeg'),
 (6, 3, 'VTK02', '666', '<div>\r\nDimension interne: 560x530x470\r\n</div>\r\n<div>\r\nPoids: 64kg\r\n</div>', '5e9da8b39aa7c.jpeg');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slider`
+--
+
+CREATE TABLE `slider` (
+  `id` int(11) NOT NULL,
+  `link` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `link`) VALUES
+(1, 'https://img.cinemablend.com/quill/f/3/d/7/5/9/f3d7591f967beacb0c09a1f59b31ffe6936e9f55.jpg'),
+(2, 'https://img09.rl0.ru/afisha/e1425x712p0x0f1920x962q65i/s.afisha.ru/mediastorage/5d/61/78128c747fe04c4a9edd980b615d.jpg');
+
 --
 -- Indexes for dumped tables
 --
@@ -134,6 +153,12 @@ ALTER TABLE `product`
   ADD KEY `IDX_D34A04AD12469DE2` (`category_id`);
 
 --
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -159,7 +184,13 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

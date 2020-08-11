@@ -10,6 +10,7 @@ use App\Entity\Category;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Entity\Article;
+use App\Entity\Slider;
 
 class HomeController extends AbstractController
 {
@@ -23,8 +24,10 @@ class HomeController extends AbstractController
         $session = $request->getSession();
         $session->set("nav","home");
 
+        $sliders = $em->getRepository(Slider::class)->findAll();
         $allproducts = $em->getRepository(Product::class)->findAll();
         return $this->render('home/index.html.twig', [
+            "sliders"=>$sliders,
             "allproducts" => $allproducts
         ]);
     }
