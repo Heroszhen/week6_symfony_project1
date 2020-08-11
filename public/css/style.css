@@ -1,0 +1,107 @@
+a{
+    color:black;
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+    color:black;
+    text-decoration: none;
+}
+
+img{
+    width:100%;
+    height:auto;
+}
+
+iframe{
+    width:100%;
+}
+
+p{
+    margin-bottom:5px !important;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.project1{
+    min-height:100vh;
+    padding-bottom:10px;
+}
+.project1 .thenav{
+    position: absolute;
+    z-index: 100;
+    position: fixed;
+    top:0;
+    width:100%;
+}
+
+.project1 .content{
+    padding-top:56px;
+}
+
+.card{
+    margin:0 auto;
+}
+.card .cardimg{
+    height:200px;
+    overflow: hidden;
+}
+
+.card:hover{
+    -webkit-box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+#categories,
+#onecategory
+{
+    background-color:#EAEDED;
+}
+
+
+
+@media(max-width:768px){
+    #home .cardimg{
+        height:auto;
+    }
+}
+
+
+
+/*admin*/
+.admin .theadminnav{
+    position: absolute;
+    z-index: 20;
+    position: fixed;
+    top:0;
+    width:30px;
+    overflow: hidden;
+}
+.admin .theadmincontent{
+    padding-left:30px;
+}
+
+#adminnav{
+    width:100%;
+    background-color:black;
+    height:100vh;
+    overflow: hidden;
+}
+#adminnav a{
+    color:gray;
+}
+
+#adminnav a.active{
+    color:white;
+}
+
+#adminnav a:hover{
+    color:white;
+}
+
+#adminnav .onetitle{
+    padding-left:40px;
+}

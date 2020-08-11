@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="contact" class="project1">
+    <div class="thenav">
+        {% include "common/nav.html.twig" %}
+    </div>
+    <div class="content">
+        <div class="container pt-5">
+            <div class="row justify-content-center">
+                <h2 class="col-12 text-center mb-3">Contactez-nous</h2>
+                <div class="col-md-6 h1">
+                    <div>
+                        <strong>Vertek</strong>
+                        <div  class="text-black-50">
+                            Paris , France , Terre 
+                        </div>
+                        <div class="text-black-50">
+                            Tel: +33 (0)1 11 11 11 11
+                        </div>
+                        <div class="text-black-50">
+                            Email: gmail@gmail.com
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                {{form_start(form)}}
+                {{form_row(form.civility)}}
+                {{form_row(form.name)}}
+                {{form_row(form.email)}}
+                {{form_row(form.message)}}
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+                {{form_end(form)}}
+                </div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167998.10803373056!2d2.206977064368058!3d48.858774103123785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1597133348642!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+php bin/console doctrine:schema:update --force
+
+css:
+https://html-css-js.com/css/generator/box-shadow/
+
+export PATH=/usr/local/php5/bin:$PATH
+export PATH="$HOME/.symfony/bin:$PATH"
+symfony server:start

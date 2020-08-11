@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    #adminallproducts table img{
+        max-width:400px !important;
+    }
+</style>
+<div id="adminallproducts" class="admin">
+    <div class="theadminnav">
+        {% include 'admin/adminnav.html.twig' %}
+    </div>
+    <div class="theadmincontent">
+        <div class="container-fluid pt-5">
+            <h2 class="text-center mb-4">Les Produits</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-2">
+                </div>
+                <div class="col-md-12 mb-2">
+                    <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for one in allproducts %}
+                        <tr>
+                        <td>{{ one.id }}</td>
+                        <td>{{ one.name }}</td>
+                        <td>{{ one.category.name }}</td>
+                        <td>{{ one.price }}</td>
+                        <td>
+                            <img src="{{ asset('photos/' ~ one.photo) }}" class="card-img-top" alt="...">
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-info mb-1">Modifier</a>
+                            <br>
+                            <a href="" class="btn btn-danger">Supprimer</a>
+                        </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

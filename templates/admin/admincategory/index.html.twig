@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    #adminallcategories img{
+        max-width:400px !important;
+    }
+</style>
+<div id="adminallcategories" class="admin">
+    <div class="theadminnav">
+        {% include 'admin/adminnav.html.twig' %}
+    </div>
+    <div class="theadmincontent">
+        <div class="container-fluid pt-5">
+            <h2 class="text-center mb-4">Les Catégories</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-2">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.photo) }}
+                        <div class="showimagefile mb-1">
+                            <img src="" alt="">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for one in allcategories %}
+                        <tr>
+                        <td>{{ one.id }}</td>
+                        <td>{{ one.name }}</td>
+                        <td>
+                            <img src="{{ asset('photos/' ~ one.photo) }}" class="card-img-top" alt="...">
+                        </td>
+                        <td>
+                            <a href="{{ path('adminmodifycategory',{'id':one.id}) }}" class="btn btn-info mb-1">Modifier</a>
+                            <br>
+                            <a href="{{ path('admindeleteonecategory',{'id':one.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
