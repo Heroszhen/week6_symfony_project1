@@ -5,17 +5,11 @@
         {% include "common/nav.html.twig" %}
     </div>
     <div class="content">
-        <h2 class="text-center">Qui somme-nous</h2>
+        <h2 class="text-center pt-4 mb-5">Qui somme-nous</h2>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    Un véritable service en plus pour vos clients, la livraison à domicile. LiberBox est un système unique et innovant en France, de location longue durée spécialement conçu pour les professionnels de la livraison. LiberBox, comment sa marche? Les loyers sont attractifs et commence à partir de 119€ HT par mois. Possibilité de nous laisser la gestion de l'assurance de votre scooter. Les contrats sont d'une durée d'un an renouvelable, suivant votre besoin. La mobilité éco responsable est un choix, LiberBox vous apporte la solution au défi qu’est la livraison Zéro émission ! Profitez de scooters électriques beaux et performants pour vos livraisons. Simplifiez votre gestion des coûts. Renforcez votre présence auprès de vos clients et augmentez votre chiffre d’affaire sans que la gestion d’une flotte de scooters soit une perte de temps pour vous.
-
--ÉCONOMIQUE: Loyer à partir de seulement 119€ HT par mois.
-
--PRATIQUE: Redécouvrez le plaisir de livrer sans bruit, avec une grande capacité de charge.
-
--ÉCOLOGIQUE: Zéro émission, et une charge complète de la batterie pour moins d'1€.
+                    {{ about.about|raw }}
                 </div>
             </div>
         </div>

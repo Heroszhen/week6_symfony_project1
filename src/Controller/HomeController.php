@@ -113,9 +113,10 @@ class HomeController extends AbstractController
         $session = $request->getSession();
         $session->set("nav","propos");
 
+        $about = $em->find(Company::class,1);
         
         return $this->render('home/aboutus.html.twig', [
-            
+            "about" => $about
         ]);
     }
 

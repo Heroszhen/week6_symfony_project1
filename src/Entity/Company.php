@@ -27,6 +27,11 @@ class Company
      */
     private $map;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $about;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Company
     public function setMap(?string $map): self
     {
         $this->map = $map;
+
+        return $this;
+    }
+
+    public function getAbout(): ?string
+    {
+        return $this->about;
+    }
+
+    public function setAbout(?string $about): self
+    {
+        $this->about = $about;
 
         return $this;
     }
