@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="admincompany" class="admin">
+    <div class="theadminnav">
+        {% include 'admin/adminnav.html.twig' %}
+    </div>
+    <div class="theadmincontent">
+        <div class="container-fluid pt-5">
+            <h2 class="text-center mb-4">Mon entreprise</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {{ form_start(form) }}
+                        {{ form_row(form.text1) }}
+                        {{ form_row(form.map) }}
+                        {{ form_row(form.about) }}
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{%  block javascripts  %}
+    {{ parent() }}
+    <script src="{{ asset('js/ckeditorbasic/adapters/jquery.js') }}"></script>
+    <script src="{{ asset('js/ckeditorbasic/ckeditor.js') }}"></script>
+    <script>
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+        });
+    </script>
+{% endblock %}

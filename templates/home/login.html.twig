@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+    #login .content>div{
+        display:flex;
+        flex-wrap:wrap;
+    }
+    #login .content>div>div{
+        width:50%;
+        height:100vh;
+    }
+
+    #login .content>div>div:nth-child(2){
+        display:flex;
+        justify-content :center;
+        align-items:center;
+    }
+    #login .content>div>div:nth-child(2) form{
+        width:60%;
+    }
+
+    @media(max-width:768px){
+        #login .content>div>div{
+            width:100%;
+        }
+        #login .content>div>div:nth-child(2){
+            position:absolute;
+            z-index:10;
+            width:100%;
+            top:56px;
+        }
+        #login .content>div>div:nth-child(2) form{
+            width:90%;
+        }
+    }
+</style>
+<div id="login" class="project1">
+    <div class="thenav">
+        {% include "common/nav.html.twig" %}
+    </div>
+    <div class="content">
+        <div>
+            <div class="image">
+                <img src="https://phoneky.co.uk/thumbs/wallpapers/p2/fcelebs/44/9a72cedc12659752.jpg" alt="nancy">
+            </div>
+            <div class="loginform">
+            {{ form_start(form) }}
+            <h2 class="text-center mb-4">Login</h2>
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                    </div>
+            {% endfor %}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

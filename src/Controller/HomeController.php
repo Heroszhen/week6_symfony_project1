@@ -13,6 +13,8 @@ use App\Entity\Article;
 use App\Entity\Slider;
 use App\Entity\Company;
 use Symfony\Component\HttpFoundation\Response;
+use App\Entity\User;
+use App\Form\LoginType;
 
 class HomeController extends AbstractController
 {
@@ -170,4 +172,48 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/login", name="loginpage")
+     */
+    public function login(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $session = $request->getSession();
+        $session->set("nav","login");
+
+        $login = new User();
+        $form = $this->createForm(LoginType::class,$login);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
+                $user = $em->getRepository(User::class)->findOneBy(["email"=>$login->getEmail()]);
+                if(!empty((array)$user)){
+                    if (password_verify($login->getPassword(),$user->getPassword())){
+                        $session->set("user",$user);
+                        return $this->redirectToRoute('homepage');
+                    }
+                }
+                $message = "L'email ou le mot de passe est incorrect";
+                $this->addFlash('danger', $message);
+            }
+        }
+
+        return $this->render('home/login.html.twig', [
+            "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name="logoutpage")
+     */
+    public function logout(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $session = $request->getSession();
+        $session->set("nav","logout");
+
+        $session->remove("user");
+        
+        return $this->redirectToRoute('homepage');
+    }
 }

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    #adminallproducts table img{
+        max-width:400px !important;
+    }
+</style>
+<div id="adminallarticles" class="admin">
+    <div class="theadminnav">
+        {% include 'admin/adminnav.html.twig' %}
+    </div>
+    <div class="theadmincontent">
+        <div class="container-fluid pt-5">
+            <h2 class="text-center mb-5">Les Articles</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-2">
+                    {{ form_start(form) }}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('danger') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.content) }}
+                    {{ form_row(form.photo) }}
+                    <div class="showimagefile mb-1">
+                        <img src="" alt="">
+                    </div>
+                        
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-md-7 mb-2">
+                    <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Contenu</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for one in allarticles %}
+                        <tr>
+                        <td>{{ one.id }}</td>
+                        <td>{{ one.title }}</td>
+                        <td>
+                            <img src="{{ asset('photos/' ~ one.photo) }}" class="card-img-top" alt="...">
+                        </td>
+                        <td>{{ one.title|raw|slice(0, 20) }}....</td>
+                        <td>
+                            <a href="{{ path('adminmodifyonearticle',{'id':one.id}) }}" class="btn btn-info mb-1">Modifier</a>
+                            <br>
+                            <a href="{{ path('admindeleteonearticle',{'id':one.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </di>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{%  block javascripts  %}
+    {{ parent() }}
+    <script src="{{ asset('js/ckeditorbasic/ckeditor.js') }}"></script>
+    <script src="{{ asset('js/ckeditorbasic/adapters/jquery.js') }}"></script>
+    
+    <script>
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+        });
+    </script>
+{% endblock %}

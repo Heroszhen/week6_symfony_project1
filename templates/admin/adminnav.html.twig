@@ -5,12 +5,21 @@
         </svg>
     </div>
     <div class="mb-2 onetitle">
+        <a href="{{ path('homepage') }}">Accueil</a>
+    </div>
+    <div class="mb-2 onetitle">
         <a href="{{ path('adminallcategories') }}" class="{% if app.session.get('adminnav')=='category' %}active{% endif %}">Catégories</a>
     </div>
     <div class="mb-2 onetitle">
         <a href="{{ path('adminallproducts') }}" class="{% if app.session.get('adminnav')=='product' %}active{% endif %}">Produits</a>
     </div>
     <div class="mb-2 onetitle">
-        <a>Articles</a>
+        <a href="{{ path('adminallarticles') }}" class="{% if app.session.get('adminnav')=='article' %}active{% endif %}">Articles</a>
+    </div>
+    <div class="mb-2 onetitle">
+        <a href="{{ path('adminslider') }}" class="{% if app.session.get('adminnav')=='slider' %}active{% endif %}">Carousel</a>
+    </div>
+    <div class="mb-2 onetitle">
+        <a href="{{ path('admincompany') }}" class="{% if app.session.get('adminnav')=='company' %}active{% endif %}">Entreprise</a>
     </div>
 </div>

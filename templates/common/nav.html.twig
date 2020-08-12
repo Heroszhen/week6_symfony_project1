@@ -21,6 +21,20 @@
       <li class="nav-item {% if app.session.get("nav")=='contact' %}active{% endif %}">
         <a class="nav-link" href="{{ path('contactpage') }}">Contact</a>
       </li>
+      {% if app.session.get("user") is not null %}
+        <li class="nav-item {% if app.session.get("nav")=='logout' %}active{% endif %}">
+          <a class="nav-link" href="{{ path('logoutpage') }}">Logout</a>
+        </li>
+        {% if app.session.get("user").role == "admin" %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/slider/toutes_les_photos">Admin</a>
+          </li>
+        {% endif %}
+      {% else %}
+        <li class="nav-item {% if app.session.get("nav")=='login' %}active{% endif %}">
+          <a class="nav-link" href="{{ path('loginpage') }}">Login</a>
+        </li>
+      {% endif %}
     </ul>
     <div style="position:relative">
       <div class="text-white"> 
