@@ -15,6 +15,8 @@ use App\Entity\Company;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use App\Form\LoginType;
+use App\Entity\Comment;
+use App\Form\CommentType;
 
 class HomeController extends AbstractController
 {
@@ -78,10 +80,32 @@ class HomeController extends AbstractController
         $session = $request->getSession();
         $session->set("nav","categories");
 
+        $comment = new Comment();
+        if($session->get("user") != null){
+            $name = $session->get("user")->getLastname().' '.$session->get("user")->getFirstname();
+            $comment->setName($name);
+        }
+        $form = $this->createForm(CommentType::class,$comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
+                $comment->setCreated(new \DateTime());
+                $comment->setProduct($pd);
+                $em->persist($comment);
+                $em->flush();
+
+                $comment = new Comment();
+                $form = $this->createForm(CommentType::class,$comment);
+            }
+        }
+
         $others = $em->getRepository(Product::class)->findBy(["category"=>$pd->getCategory()]);
+        $comments = $em->getRepository(Comment::class)->findBy(["product"=>$pd],["id"=>"desc"]);
         return $this->render('home/oneproduct.html.twig', [
             "product" => $pd,
-            "others" => $others
+            "others" => $others,
+            "form" => $form->createView(),
+            "comments" => $comments
         ]);
     }
 
@@ -166,10 +190,42 @@ class HomeController extends AbstractController
         $session = $request->getSession();
         $session->set("nav","blog");
 
-        
+        $comment = new Comment();
+        if($session->get("user") != null){
+            $name = $session->get("user")->getLastname().' '.$session->get("user")->getFirstname();
+            $comment->setName($name);
+        }
+        $form = $this->createForm(CommentType::class,$comment);
+        $comments = $em->getRepository(Comment::class)->findBy(["article"=>$ar],["id"=>"desc"]);
         return $this->render('home/onearticle.html.twig', [
-            "article" => $ar
+            "article" => $ar,
+            "form" => $form->createView(),
+            "comments" => $comments
         ]);
+    }
+
+     /**
+     * @Route("/blog/article/addonecomment/{id}",methods="post")
+     */
+    public function addOneCommentToArticle(Article $ar ,Request $request){
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $comment = new Comment();
+            $form = $this->createForm(CommentType::class,$comment);
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+                if($form->isValid()){
+                    $comment->setCreated(new \DateTime());
+                    $comment->setArticle($ar);
+                    $em->persist($comment);
+                    $em->flush();
+
+                    $date = $comment->getCreated()->format("d/m/Y h:i:s");
+                    return new Response($date);
+                }
+            }
+        }
+        return new Response("0");
     }
 
     /**
@@ -215,5 +271,24 @@ class HomeController extends AbstractController
         $session->remove("user");
         
         return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * @Route("/chercherproduits", name="searchproduct")
+     */
+    public function searchProductsByName(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $session = $request->getSession();
+        $session->set("nav","searchproduct");
+
+        $name = $request->request->get("productname");
+        
+        $products = $em->getRepository(Product::class)->findByName($name);
+        
+        return $this->render('home/searchproduct.html.twig', [
+            "name" => $name,
+            "products" => $products
+        ]);
     }
 }

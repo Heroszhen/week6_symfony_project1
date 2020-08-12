@@ -36,6 +36,10 @@
         </li>
       {% endif %}
     </ul>
+    <form class="form-inline my-2 my-lg-0 mr-2" action="{{ path('searchproduct') }}" method="post">
+      <input class="form-control mr-sm-2" name="productname" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
     <div style="position:relative">
       <div class="text-white"> 
         <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-cart-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

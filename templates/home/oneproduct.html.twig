@@ -41,6 +41,29 @@
                 </div>
             </div>
 
+            <div class="row mt-5 pt-5">
+                <div class="col-12">
+                    <h5>Laissez un commentaire</h5>
+                    {{ form_start(form) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.message) }}
+                    <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-12 mt-3">
+                    <div class="switchComments pointer h5">Les commentaires</div>
+                    <div class="allcomments">
+                        {% for one in comments %}
+                        <div class="onecomment mt-3 pl-3">
+                            <strong>{{ one.name }}</strong>
+                            <small>{{ one.created|date('d/m/Y h:i:s') }}</small>
+                            <div class="text-black-50">{{ one.message }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
             <div class="row border-top" style="margin-top:100px;">
                 <div class="col-12 mb-2 h4">
                     Les autres produits
