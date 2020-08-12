@@ -11,12 +11,13 @@
 <li>slider</li>
 <li>comment</li>
 </ul>
-<br><br><br>
+<br><br>
 
 <h4>Les fonctionnalités</h4>
 <ul>
 <li>la barre de recherche(chercher des produits)</li>
 <li>l'authentification</li>
+<li>commenter les produits et les articles</li>
 <li>
     l'admin : ajout,modification et suppression
     <ul>
