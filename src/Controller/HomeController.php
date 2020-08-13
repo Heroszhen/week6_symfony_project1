@@ -142,16 +142,18 @@ class HomeController extends AbstractController
 
         $basket = $session->get("basket");
         $products = [];
-        foreach($basket as $k=>$v){
-            $product = $em->find(Product::class,$k);
-            $courant = [$product,$v];
-            array_push($products,$courant);
+        if(isset($basket)){
+            foreach($basket as $k=>$v){
+                $product = $em->find(Product::class,$k);
+                $courant = [$product,$v];
+                array_push($products,$courant);
+            }
         }
-        
         return $this->render('home/mybasket.html.twig', [
             "products" => $products
         ]);
     }
+
 
     /**
      * @Route("/aboutus", name="aboutuspage")
