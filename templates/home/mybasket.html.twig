@@ -47,6 +47,18 @@
                     {% endfor %}
                 </div>
                 <div class="col-md-3">
+                    <h5 class="mb-3">RECAPITULATIF</h5>
+                    <div class="p-4 bg-white">
+                        <div class="mb-5">
+                            <span class="h5">Total</span> : 
+                            {% set n = 0 %}
+                            {% for one in products %}
+                                {% set n = one[0].price * one[1] + n %}
+                            {% endfor %}
+                            <span class="text-danger h4">{{ n }}</span>€
+                        </div>
+                        <button type="button" class="btn btn-warning btn-block">Valider mon panier</button>
+                    </div>
                 </div>
             </div>
         </div>

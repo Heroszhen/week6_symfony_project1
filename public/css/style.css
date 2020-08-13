@@ -54,6 +54,8 @@ p{
 
 .card{
     margin:0 auto;
+    height:370px;
+    overflow: hidden;
 }
 .card .cardimg{
     height:200px;
