@@ -17,6 +17,7 @@ use App\Entity\User;
 use App\Form\LoginType;
 use App\Entity\Comment;
 use App\Form\CommentType;
+use App\Form\LogupType;
 
 
 class HomeController extends AbstractController
@@ -253,7 +254,36 @@ class HomeController extends AbstractController
         return new Response("0");
     }
 
-    
+    /**
+     * @Route("/logup", name="loguppage")
+     */
+    public function logup(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $session = $request->getSession();
+        $session->set("nav","logup");
+
+        $user = new user();
+        $form = $this->createForm(LogupType::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
+                $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+                $em->persist($user);
+                $em->flush();
+
+                $message = "Votre inscription a été faite avec succès";
+                $this->addFlash('success', $message);
+
+                $user = new user();
+                $form = $this->createForm(LogupType::class,$user);
+            }
+        }
+
+        return $this->render('home/logup.html.twig', [
+            "form" => $form->createView()
+        ]);
+    }
 
     /**
      * @Route("/login", name="loginpage")
@@ -269,7 +299,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if($form->isValid()){
-                $user = $em->getRepository(User::class)->findOneBy(["email"=>$login->getEmail()]);
+                $user = $em->getRepository(User::class)->findOneBy(["email"=>$login->getLoginmail()]);
                 if(!empty((array)$user)){
                     if (password_verify($login->getPassword(),$user->getPassword())){
                         $session->set("user",$user);

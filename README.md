@@ -16,6 +16,7 @@
 <h4>Les fonctionnalités</h4>
 <ul>
 <li>la barre de recherche(chercher des produits)</li>
+<li>l'inscription</li>
 <li>l'authentification</li>
 <li>commenter les produits et les articles</li>
 <li>ajouter les produits au panier</li>

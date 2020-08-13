@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  jeu. 13 août 2020 à 12:21
+-- Généré le :  jeu. 13 août 2020 à 15:01
 -- Version du serveur :  5.7.25
 -- Version de PHP :  7.3.1
 
@@ -89,7 +89,8 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`id`, `product_id`, `article_id`, `name`, `message`, `created`) VALUES
 (1, 4, NULL, 'Héros zhen', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non aliquam est, in ma', '2020-08-12 16:00:36'),
 (2, 4, NULL, 'Héros zhen', 'ddqdfqsdf', '2020-08-12 16:07:40'),
-(3, NULL, 5, 'abcdefg', 'etus pellentesque nunc, ut elementum libero magna tincidunt erat. Vestibulum interdum ullamcorper viverra. Cras leo tortor, molestie pharetra felis aliq', '2020-08-12 16:59:37');
+(3, NULL, 5, 'abcdefg', 'etus pellentesque nunc, ut elementum libero magna tincidunt erat. Vestibulum interdum ullamcorper viverra. Cras leo tortor, molestie pharetra felis aliq', '2020-08-12 16:59:37'),
+(4, 6, NULL, 'zhen', 'zhen is the biggest hero in the world.', '2020-08-13 15:43:20');
 
 -- --------------------------------------------------------
 
@@ -186,15 +187,17 @@ CREATE TABLE `user` (
   `firstname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `loginmail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `lastname`, `firstname`, `email`, `password`, `role`) VALUES
-(1, 'Héros', 'zhen', 'aaa@gmail.com', '$2y$10$0Zo5//tHOQFVOBo6iLFQaui39eQyju31GFoQb5qaOnfmmyA1dbd8e', 'admin');
+INSERT INTO `user` (`id`, `lastname`, `firstname`, `email`, `password`, `role`, `loginmail`) VALUES
+(1, 'Héros', 'zhen', 'aaa@gmail.com', '$2y$10$0Zo5//tHOQFVOBo6iLFQaui39eQyju31GFoQb5qaOnfmmyA1dbd8e', 'admin', NULL),
+(2, 'bbb', 'bbb', 'bbb@gmail.com', '$2y$10$DeiyyLeYqwwc7rLfJPwroeGuYMtjoYoxgI3V0JieSyC5fxVX3Qt1i', NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -271,7 +274,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `company`
@@ -301,7 +304,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

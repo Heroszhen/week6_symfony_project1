@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<style>
+    #categories .card{
+        height:280px;
+    }
+</style>
 <div id="categories" class="project1">
     <div class="thenav">
         {% include "common/nav.html.twig" %}
@@ -16,7 +21,7 @@
                                 </a>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{one.name}}</h5>
+                                <h5 class="card-title mb-5">{{one.name}}</h5>
                             </div>
                         </div>
                     </div>

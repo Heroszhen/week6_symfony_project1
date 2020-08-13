@@ -11,13 +11,28 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class LoginType extends AbstractType
+class LogupType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('loginmail',EmailType::class,[
+            ->add('lastname',TextType::class,[
+                'label'=>"Nom",
+                'constraints' => [
+                    new NotBlank(["message"=>"Veuillez mettre un nom"])
+                ],
+                'required'=>false
+            ])
+            ->add('firstname',TextType::class,[
+                'label'=>"Prénom",
+                'constraints' => [
+                    new NotBlank(["message"=>"Veuillez mettre un prénom"])
+                ],
+                'required'=>false
+            ])
+            ->add('email',EmailType::class,[
                 'label'=>"Email",
                 'attr' => ['placeholder' => "mail"],
                 'constraints'=> [

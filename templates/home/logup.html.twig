@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+    #logup .content{
+        width:100%;
+        height:100vh;
+        background-image:url("https://media.giphy.com/media/u6mE49Th71PvG/giphy.gif");
+        background-size:cover;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    #logup .content .logupform{
+        width:40%;
+        background-color:rgba(255,255,255,.6);
+        border:1px solid rgba(255,255,255,.6);
+        border-radius:5px;
+        padding:20px;
+    }
+
+    #logup .content .logupform input{
+        background-color:rgba(255,255,255,.6);
+    }
+    @media(max-width:768px){
+        #logup .content .logupform{
+            width:95%;
+        }
+    }
+</style>
+<div id="logup" class="project1">
+    <div class="thenav">
+        {% include "common/nav.html.twig" %}
+    </div>
+    <div class="content">
+        <div class="logupform">
+            <h2 class="text-center">Inscrivez-vous</h2>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {{ form_start(form) }}
+            {{ form_row(form.lastname) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            <button type="submit" class="btn btn-primary btn-block btn-sm">Inscription</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

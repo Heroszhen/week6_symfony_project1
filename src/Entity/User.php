@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *  fields={"email"},
+ *  message="Il existe déjà un utilisateur avec cet email")
  */
 class User
 {
@@ -41,6 +46,11 @@ class User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $role;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $loginmail;
 
     public function getId(): ?int
     {
@@ -103,6 +113,18 @@ class User
     public function setRole(?string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getLoginmail(): ?string
+    {
+        return $this->loginmail;
+    }
+
+    public function setLoginmail(?string $loginmail): self
+    {
+        $this->loginmail = $loginmail;
 
         return $this;
     }

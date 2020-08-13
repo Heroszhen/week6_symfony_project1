@@ -7,7 +7,8 @@
     }
     #login .content>div>div{
         width:50%;
-        height:100vh;
+        height:calc(100vh - 56px);
+        overflow:hidden;
     }
 
     #login .content>div>div:nth-child(2){
@@ -51,7 +52,7 @@
                     {{ message }}
                     </div>
             {% endfor %}
-            {{ form_row(form.email) }}
+            {{ form_row(form.loginmail) }}
             {{ form_row(form.password) }}
             <button type="submit" class="btn btn-primary">Envoyer</button>
             {{ form_end(form) }}
