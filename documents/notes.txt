@@ -6,3 +6,6 @@ https://html-css-js.com/css/generator/box-shadow/
 export PATH=/usr/local/php5/bin:$PATH
 export PATH="$HOME/.symfony/bin:$PATH"
 symfony server:start
+
+Add advanced interaction controls to your HTML tables the free & easy way
+https://datatables.net/

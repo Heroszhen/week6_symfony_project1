@@ -3,7 +3,7 @@
 {% block body %}
 <style>
     #adminallcategories img{
-        max-width:400px !important;
+        max-width:100px !important;
     }
 </style>
 <div id="adminallcategories" class="admin">
@@ -11,7 +11,7 @@
         {% include 'admin/adminnav.html.twig' %}
     </div>
     <div class="theadmincontent">
-        <div class="container-fluid pt-5">
+        <div class="container pt-5">
             <h2 class="text-center mb-4">Les Catégories</h2>
             <div class="row justify-content-center">
                 <div class="col-md-5 mb-2">
@@ -30,6 +30,12 @@
                     {{ form_end(form) }}
                 </div>
                 <div class="col-md-12">
+                    <div class="mb-2 mt-5">
+                        <label for="searchbyname">
+                            Recherche par nom
+                        </label>
+                        <input type="text" id="searchbyname">
+                    </div>
                     <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -40,10 +46,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for one in allcategories %}
-                        <tr>
+                        {% for key,one in allcategories %}
+                        <tr data-key="{{ key }}" class="{% if key > 1 %}d-none{% endif %}">
                         <td>{{ one.id }}</td>
-                        <td>{{ one.name }}</td>
+                        <td class="name">{{ one.name }}</td>
                         <td>
                             <img src="{{ asset('photos/' ~ one.photo) }}" class="card-img-top" alt="...">
                         </td>
@@ -56,6 +62,15 @@
                         {% endfor %}
                     </tbody>
                     </table>
+                    <div class="navigation">
+                        <div class="pagination">
+                        {% set n = allcategories|length % 2 %}
+                        {% set n = (allcategories|length + n) / 2 %}
+                        {% for i in 1..n %}
+                            <span class="pointer" data-page="{{i}}">{{ i }}</span>
+                        {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

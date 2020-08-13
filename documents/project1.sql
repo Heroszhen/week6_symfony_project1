@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  mer. 12 août 2020 à 15:56
+-- Généré le :  jeu. 13 août 2020 à 12:21
 -- Version du serveur :  5.7.25
 -- Version de PHP :  7.3.1
 
@@ -63,7 +63,9 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id`, `name`, `photo`) VALUES
 (1, 'scooter', '5e94741b9e442.jpeg'),
 (2, 'vélo', '5e94741ba0a5c.jpeg'),
-(3, 'caisson', '5e94741ba151f.jpeg');
+(3, 'caisson', '5e94741ba151f.jpeg'),
+(4, 'portable', '5f351276ae998.jpeg'),
+(5, 'pc', '5f351280d29bb.jpeg');
 
 -- --------------------------------------------------------
 
@@ -135,21 +137,22 @@ CREATE TABLE `product` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `descritpion` longtext COLLATE utf8mb4_unicode_ci,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `product`
 --
 
-INSERT INTO `product` (`id`, `category_id`, `name`, `price`, `descritpion`, `photo`) VALUES
-(1, 1, 'TK-A', '111', '<div>\r\nType de batterie: amovible\r\n</div>\r\n<div>\r\nVitesse: 45km/h\r\n</div>\r\n<div>\r\n100% charge: 5h\r\n</div>\r\n<div>\r\nMasse: 164kg\r\n</div>\r\n<div>\r\nLong: 2050mm\r\n</div>', 'tka.jpg'),
-(2, 1, 'TK-F', '112', '<div>\r\nType de batterie: fixe\r\n</div>\r\n<div>\r\nVitesse: 45km/h\r\n</div>\r\n<div>\r\n100% charge: 5-10h\r\n</div>\r\n<div>\r\nMasse: 164kg\r\n</div>\r\n<div>\r\nLong: 2050mm\r\n</div>', 'tkf.jpg'),
-(3, 1, 'TK-II', '123', '<div>\r\nType de batterie: fixe\r\n</div>\r\n<div>\r\nVitesse: 45km/h\r\n</div>\r\n<div>\r\n100% charge: 5h\r\n</div>\r\n<div>\r\nMasse: 114kg\r\n</div>\r\n<div>\r\nLong: 1850mm\r\n</div>', 'tkii.jpg'),
-(4, 2, 'DEVRON', '33', '<div>\r\nMoteur: 36v brushle dans roue avant\r\n</div>\r\n<div>\r\nPuissance: 250W\r\n</div>\r\n<div>\r\nDisplay: Leds\r\n</div>\r\n<div>\r\nBatterie: Li-ion 36v/13Ah dans porte bagage\r\n</div>\r\n<div>\r\nAutonomie: 60-80km\r\n</div>', 'devron.jpg'),
-(5, 3, 'VTK01', '50', '<div>\r\nDimension interne: 560x530x470\r\n</div>\r\n<div>\r\nPoids: 8kg\r\n</div>', '5e9af28e163ce.jpeg'),
-(6, 3, 'VTK02', '666', '<div>\r\nDimension interne: 560x530x470\r\n</div>\r\n<div>\r\nPoids: 64kg\r\n</div>', '5e9da8b39aa7c.jpeg'),
-(7, 2, 'Arcade Renaissance Noir', '10', '<p>Le v&eacute;lo <strong>Arcade renaissance noir </strong>est un mod&egrave;le <strong>tr&egrave;s confortable</strong> gr&acirc;ce &agrave; son cadre. Il vous offre une <strong>position tr&egrave;s droite</strong>. Ce mod&egrave;le entr&eacute;e de gamme offre toutes les qualit&eacute;s d&#39;un v&eacute;lo pratique et simple. <strong>Sobre et id&eacute;al pour la ville</strong>.</p><p>blabla</p>', '5f32dcd1378cc.jpeg');
+INSERT INTO `product` (`id`, `category_id`, `name`, `price`, `descritpion`, `photo`, `quantity`) VALUES
+(1, 1, 'TK-A', '111', '<div>\r\nType de batterie: amovible\r\n</div>\r\n<div>\r\nVitesse: 45km/h\r\n</div>\r\n<div>\r\n100% charge: 5h\r\n</div>\r\n<div>\r\nMasse: 164kg\r\n</div>\r\n<div>\r\nLong: 2050mm\r\n</div>', 'tka.jpg', '0'),
+(2, 1, 'TK-F', '112', '<div>\r\nType de batterie: fixe\r\n</div>\r\n<div>\r\nVitesse: 45km/h\r\n</div>\r\n<div>\r\n100% charge: 5-10h\r\n</div>\r\n<div>\r\nMasse: 164kg\r\n</div>\r\n<div>\r\nLong: 2050mm\r\n</div>', 'tkf.jpg', '10'),
+(3, 1, 'TK-II', '123', '<div>\r\nType de batterie: fixe\r\n</div>\r\n<div>\r\nVitesse: 45km/h\r\n</div>\r\n<div>\r\n100% charge: 5h\r\n</div>\r\n<div>\r\nMasse: 114kg\r\n</div>\r\n<div>\r\nLong: 1850mm\r\n</div>', 'tkii.jpg', '10'),
+(4, 2, 'DEVRON', '33', '<div>\r\nMoteur: 36v brushle dans roue avant\r\n</div>\r\n<div>\r\nPuissance: 250W\r\n</div>\r\n<div>\r\nDisplay: Leds\r\n</div>\r\n<div>\r\nBatterie: Li-ion 36v/13Ah dans porte bagage\r\n</div>\r\n<div>\r\nAutonomie: 60-80km\r\n</div>', 'devron.jpg', '10'),
+(5, 3, 'VTK01', '50', '<div>\r\nDimension interne: 560x530x470\r\n</div>\r\n<div>\r\nPoids: 8kg\r\n</div>', '5e9af28e163ce.jpeg', '10'),
+(6, 3, 'VTK02', '666', '<div>\r\nDimension interne: 560x530x470\r\n</div>\r\n<div>\r\nPoids: 64kg\r\n</div>', '5e9da8b39aa7c.jpeg', '10'),
+(7, 2, 'Arcade Renaissance Noir', '10', '<p>Le v&eacute;lo <strong>Arcade renaissance noir </strong>est un mod&egrave;le <strong>tr&egrave;s confortable</strong> gr&acirc;ce &agrave; son cadre. Il vous offre une <strong>position tr&egrave;s droite</strong>. Ce mod&egrave;le entr&eacute;e de gamme offre toutes les qualit&eacute;s d&#39;un v&eacute;lo pratique et simple. <strong>Sobre et id&eacute;al pour la ville</strong>.</p><p>blabla</p>', '5f32dcd1378cc.jpeg', '10');
 
 -- --------------------------------------------------------
 
@@ -262,7 +265,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `comment`

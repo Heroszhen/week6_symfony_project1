@@ -16,6 +16,7 @@ use App\Entity\Slider;
 use App\Form\SliderType;
 use App\Entity\Company;
 use App\Form\CompanyType;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class AdmincategoryController
@@ -28,7 +29,7 @@ class AdmincategoryController extends AbstractController
     /**
      * @Route("/", name="adminallcategories")
      */
-    public function index(Request $request)
+    public function index(PaginatorInterface $paginator, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -54,8 +55,13 @@ class AdmincategoryController extends AbstractController
             $message = "Une catégorie a été créée avec succès";
             $this->addFlash('success', $message);
         }
+/*
+        $allcategories = $paginator->paginate(
+            $em->getRepository(Category::class)->findBy([],["id"=>"desc"]), 
+            $request->query->getInt('page', 1), 
+            2 
+        );*/
         $allcategories = $em->getRepository(Category::class)->findBy([],["id"=>"desc"]);
-
         return $this->render('admin/admincategory/index.html.twig', [
             "allcategories" => $allcategories,
             "form" => $form->createView()

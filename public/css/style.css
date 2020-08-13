@@ -26,6 +26,16 @@ p{
     cursor: pointer;
 }
 
+.navigation .pagination>span{
+    border:1px solid #dee2e6;
+    border-radius:5px;
+    color:#007bff !important;
+    padding:10px;
+}
+.navigation .pagination>span a{
+    color:#007bff !important;
+}
+
 .project1{
     min-height:100vh;
     padding-bottom:10px;
@@ -73,7 +83,7 @@ p{
 
 /*admin*/
 .admin{
-    padding-bottom:10px !important;
+    padding-bottom:40px !important;
 }
 .admin .theadminnav{
     position: absolute;

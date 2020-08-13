@@ -18,6 +18,7 @@ use App\Form\LoginType;
 use App\Entity\Comment;
 use App\Form\CommentType;
 
+
 class HomeController extends AbstractController
 {
     /**
@@ -130,6 +131,28 @@ class HomeController extends AbstractController
         }
     }
 
+     /**
+     * @Route("/mon_panier", name="mybasket")
+     */
+    public function myBasket(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $session = $request->getSession();
+        $session->set("nav","basket");
+
+        $basket = $session->get("basket");
+        $products = [];
+        foreach($basket as $k=>$v){
+            $product = $em->find(Product::class,$k);
+            $courant = [$product,$v];
+            array_push($products,$courant);
+        }
+        
+        return $this->render('home/mybasket.html.twig', [
+            "products" => $products
+        ]);
+    }
+
     /**
      * @Route("/aboutus", name="aboutuspage")
      */
@@ -228,6 +251,8 @@ class HomeController extends AbstractController
         return new Response("0");
     }
 
+    
+
     /**
      * @Route("/login", name="loginpage")
      */
@@ -291,4 +316,5 @@ class HomeController extends AbstractController
             "products" => $products
         ]);
     }
+
 }
